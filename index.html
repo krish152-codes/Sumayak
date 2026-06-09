@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Sumayak 💗</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <section id="landing" class="section-full">
+    <div class="floaters" id="floaters"></div>
+    <div class="landing-center">
+      <div class="sparkle-ring" id="sparkleRing"></div>
+      <h1 class="main-title pop-in">Happy 20th Birthday,<br><span class="name-highlight">Sumayak!</span></h1>
+      <p class="subtitle pop-in delay-1">A little surprise made just for you 💗</p>
+      <button class="btn-primary pop-in delay-2" id="openSurpriseBtn">Open Your Surprise 🎁</button>
+    </div>
+  </section>
+
+  <section id="confirmation" class="section-full hidden">
+    <div class="confirm-card">
+      <div class="confirm-emoji">😌</div>
+      <h2 class="confirm-title">Be honest, Sumayak…</h2>
+      <p class="confirm-question">"Ayush Shukla is the best guy I've ever known 😌"</p>
+      <p class="funny-msg" id="funnyMsg"></p>
+      <div class="confirm-buttons">
+        <button class="btn-yes" id="yesBtn">Yes 💗</button>
+        <button class="btn-no" id="noBtn">No 🙄</button>
+      </div>
+    </div>
+    <div id="yesConfetti"></div>
+  </section>
+
+  <section id="mainPage" class="hidden">
+
+    <div class="main-header">
+      <div class="floaters-subtle" id="subtleFloaters"></div>
+      <h2 class="main-heading fade-up">For Sumayak, on her 20th Birthday 💗</h2>
+      <div class="message-card glass-card fade-up delay-1">
+        <div class="message-top-decor">🎉 ❤️ 🎂</div>
+        <p class="message-text">Happy 20th Birthday, Sumayak! 🎉❤️</p>
+        <p class="message-text">It's honestly hard to believe that we've known each other for more than 8 years now. From being classmates since 6th standard to somehow surviving all the fights, arguments, silent phases, and random drama, we've come a really long way. Looking back, it's funny how many times we probably annoyed each other, stopped talking, and then somehow became friends again. I guess that's what makes our friendship special—it survived everything.</p>
+        <p class="message-text">Over all these years, I've seen many versions of you, and even though you're still one of the dumbest people I know (someone had to say it 😌), you're also one of the most genuine, caring, and memorable friends I've ever had. School memories wouldn't have been the same without all the chaos, laughter, and ridiculous moments we shared together.</p>
+        <p class="message-text">Today you're turning 20, and I genuinely hope this year brings you happiness, success, good health, amazing memories, and everything you've been wishing for. Never lose that unique personality of yours that makes people smile, even when you're being completely clueless. 😭</p>
+        <p class="message-text">Thank you for being a part of my life for all these years. No matter how much we fight, tease each other, or disappear for a while, you'll always be one of those friends I'll never forget.</p>
+        <p class="message-text">Happy Birthday once again, Sumayak! 🎂✨ Here's to many more years of friendship, laughter, and you continuing to give everyone proof that age and wisdom don't always come together. ❤️😂</p>
+        <div class="message-signature">— Ayush 💗</div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <h2 class="section-title fade-up">Some memories that deserve to stay forever 📸</h2>
+      <p class="section-sub fade-up">Tap a photo to see it better ✨</p>
+      <div class="gallery-grid" id="photoGallery">
+        <div class="empty-gallery" id="emptyGallery">
+          No photos yet 📸 — open <strong>/admin/</strong> to upload!
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block alt-bg">
+      <h2 class="section-title fade-up">Tiny clips, big memories 🎞️</h2>
+      <p class="section-sub fade-up">Because some moments deserve to move 🎬</p>
+      <div class="media-grid" id="mediaGrid">
+        <div class="empty-gallery" id="emptyMedia">
+          No clips yet 🎞️ — open <strong>/admin/</strong> to upload!
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block ending-section">
+      <div class="ending-floaters" id="endingFloaters"></div>
+      <div class="ending-card glass-card fade-up">
+        <div class="ending-emoji">🎂💗😂</div>
+        <h2 class="ending-title">You survived 20 years,<br>and somehow I survived being your friend too 😂💗</h2>
+        <p class="ending-sub">Happy Birthday once again, Sumayak. Stay happy, stay crazy, and please get a little smarter this year.</p>
+        <div class="ending-hearts" id="endingHearts"></div>
+        <button class="btn-primary replay-btn" id="replayBtn">Replay Surprise 🎉</button>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">✕</button>
+    <img src="" alt="" id="lightboxImg" />
+  </div>
+
+  <script src="photos-loader.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
