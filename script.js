@@ -287,3 +287,126 @@ $('replayBtn').addEventListener('click', () => {
   funnyMsg.textContent = '';
   funnyIndex = 0;
 });
+/* ============================================================
+   BACKGROUND MUSIC
+   Songs play in random order, loop forever, fade between tracks
+============================================================ */
+const SONGS = [
+  'music/song1.mp3',
+  'music/song2.mp3',
+  'music/song3.mp3',
+  // Add more songs here — just follow the same pattern
+];
+
+let audio        = new Audio();
+let songIndex    = 0;
+let musicStarted = false;
+
+// Shuffle array randomly
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+const shuffledSongs = shuffleArray(SONGS);
+
+function playNextSong() {
+  if (songIndex >= shuffledSongs.length) songIndex = 0; // loop back
+  audio.src    = shuffledSongs[songIndex];
+  audio.volume = 0;
+  audio.play().catch(() => {});
+  fadeInAudio();
+  songIndex++;
+}
+
+function fadeInAudio() {
+  let vol = 0;
+  const interval = setInterval(() => {
+    vol = Math.min(vol + 0.05, 0.4); // max volume 40% so it's subtle
+    audio.volume = vol;
+    if (vol >= 0.4) clearInterval(interval);
+  }, 150);
+}
+
+function fadeOutAudio(callback) {
+  const interval = setInterval(() => {
+    audio.volume = Math.max(audio.volume - 0.05, 0);
+    if (audio.volume <= 0) {
+      clearInterval(interval);
+      audio.pause();
+      if (callback) callback();
+    }
+  }, 100);
+}
+
+// When song ends, fade into next one
+audio.addEventListener('ended', () => {
+  fadeOutAudio(() => playNextSong());
+});
+
+// Start music on "Open Your Surprise" button click
+// (must be triggered by user interaction for browser to allow it)
+function startMusic() {
+  if (!musicStarted) {
+    musicStarted = true;
+    playNextSong();
+  }
+}
+
+// Hook into the existing button — music starts when she clicks it
+document.getElementById('openSurpriseBtn').addEventListener('click', startMusic);
+
+/* ── MUSIC TOGGLE BUTTON ── */
+// Small mute/unmute button so she can turn it off if she wants
+const musicBtn = document.createElement('button');
+musicBtn.id        = 'musicToggle';
+musicBtn.innerHTML = '🎵';
+musicBtn.title     = 'Toggle music';
+musicBtn.style.cssText = `
+  position: fixed;
+  bottom: 1.2rem;
+  right: 1.2rem;
+  z-index: 9999;
+  background: rgba(255,133,179,0.85);
+  border: none;
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(232,99,154,0.4);
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s;
+  display: none;
+`;
+document.body.appendChild(musicBtn);
+
+let muted = false;
+musicBtn.addEventListener('click', () => {
+  if (muted) {
+    audio.volume = 0.4;
+    musicBtn.innerHTML = '🎵';
+    muted = false;
+  } else {
+    audio.volume = 0;
+    musicBtn.innerHTML = '🔇';
+    muted = true;
+  }
+  musicBtn.style.transform = 'scale(1.2)';
+  setTimeout(() => musicBtn.style.transform = 'scale(1)', 200);
+});
+
+// Show the music button once music starts
+function startMusic() {
+  if (!musicStarted) {
+    musicStarted = true;
+    musicBtn.style.display = 'flex';
+    musicBtn.style.alignItems = 'center';
+    musicBtn.style.justifyContent = 'center';
+    playNextSong();
+  }
+}
